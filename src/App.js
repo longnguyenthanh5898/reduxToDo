@@ -1,87 +1,11 @@
 import { useReducer, useRef, useState } from "react";
+import { setList, addList, editList, deleteList } from "./actions/action";
+import { reducer } from "./reducers/reducer";
 const initState = {
   lists: [],
   list: "",
 };
-const SET_LIST = "set_list";
-const ADD_LIST = "add_list";
-const EDIT_LIST = "edit_list";
-const DELETE_LIST = "delete_list";
 
-const setList = (payload) => {
-  return {
-    type: SET_LIST,
-    payload,
-  };
-};
-const addList = (payload) => {
-  return {
-    type: ADD_LIST,
-    payload,
-  };
-};
-const editList = (payload) => {
-  return {
-    type: EDIT_LIST,
-    payload,
-  };
-};
-const deleteList = (payload) => {
-  return {
-    type: DELETE_LIST,
-    payload,
-  };
-};
-
-const reducer = (state, action) => {
-  let newState;
-  switch (action.type) {
-    case SET_LIST:
-      newState = {
-        ...state,
-        list: action.payload,
-      };
-
-      break;
-    case ADD_LIST:
-      newState = {
-        ...state,
-        lists: [...state.lists, action.payload],
-      };
-
-      break;
-    case DELETE_LIST:
-      const currentList = [...state.lists];
-      currentList.splice(action.payload, 1);
-
-      newState = {
-        ...state,
-        //list: [...currentList],
-        lists: [...currentList],
-      };
-
-      break;
-
-    ////////////////////////////////////
-    case EDIT_LIST:
-      const newList = [...state.lists];
-      let currentValue = state.list;
-      // const inputValue = console.log(newList);
-      // console.log(currentValue);
-      // console.log(action.payload);
-      // const currentInput = setList(currentValue);
-      newList.replace(newList[action.payload], currentValue);
-      newState = {
-        ...state,
-        lists: [...newList],
-      };
-    //////////////////////////////////////
-
-    default:
-      return new Error();
-  }
-  return newState;
-};
 function App() {
   const [state, dispatch] = useReducer(reducer, initState);
   const { list, lists } = state;
@@ -89,9 +13,17 @@ function App() {
   const [isEdit, setIsEdit] = useState(false);
 
   const handleAdd = () => {
-    dispatch(addList(list));
-    dispatch(setList(""));
-    inputRef.current.focus();
+    if (!isEdit) {
+      dispatch(addList(list));
+      dispatch(setList(""));
+      inputRef.current.focus();
+    } else {
+      //dispatch((list, index));
+      dispatch(addList(list));
+      dispatch(setList(""));
+      inputRef.current.focus();
+      setIsEdit(false);
+    }
   };
   const handleDelete = (index) => {
     dispatch(deleteList(index));
@@ -99,9 +31,10 @@ function App() {
 
   const handleEdit = (index) => {
     dispatch(setList(lists[index]));
-    //dispatch(editList(list));
+
     setIsEdit(true);
   };
+  console.log(lists);
   return (
     <div>
       <h1>To do list</h1>
