@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { useReducer, useRef, useState } from "react";
 const initState = {
   lists: [],
   list: "",
@@ -41,12 +41,14 @@ const reducer = (state, action) => {
         ...state,
         list: action.payload,
       };
+
       break;
     case ADD_LIST:
       newState = {
         ...state,
         lists: [...state.lists, action.payload],
       };
+
       break;
     case DELETE_LIST:
       const currentList = [...state.lists];
@@ -57,15 +59,18 @@ const reducer = (state, action) => {
         //list: [...currentList],
         lists: [...currentList],
       };
+
       break;
 
     ////////////////////////////////////
     case EDIT_LIST:
       const newList = [...state.lists];
-      const currentValue = state.list;
+      let currentValue = state.list;
+      // const inputValue = console.log(newList);
+      // console.log(currentValue);
+      // console.log(action.payload);
       // const currentInput = setList(currentValue);
-      newList.splice(action.payload, 1, currentValue);
-      console.log(action.payload, newList, currentValue);
+      newList.replace(newList[action.payload], currentValue);
       newState = {
         ...state,
         lists: [...newList],
@@ -81,6 +86,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initState);
   const { list, lists } = state;
   const inputRef = useRef();
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleAdd = () => {
     dispatch(addList(list));
@@ -92,9 +98,9 @@ function App() {
   };
 
   const handleEdit = (index) => {
-    const currentInput = list;
-    console.log(currentInput);
-    dispatch(editList(index, currentInput));
+    dispatch(setList(lists[index]));
+    //dispatch(editList(list));
+    setIsEdit(true);
   };
   return (
     <div>
@@ -105,7 +111,9 @@ function App() {
         onChange={(e) => dispatch(setList(e.target.value))}
         placeholder="enter......"
       />
-      <button onClick={() => handleAdd()}>Add</button>
+      {!isEdit && <button onClick={() => handleAdd()}>Add Task</button>}
+      {isEdit && <button onClick={() => handleAdd()}>Edit Task</button>}
+
       <ul>
         {lists.map((list, index) => (
           <li key={index}>
