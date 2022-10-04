@@ -14,11 +14,12 @@ const InputForm = ({
       <Row justify="center">
         <Col xs={18} xl={18}>
           <Input
+            className="text-input"
             size="large"
             value={list}
             ref={inputRef}
             onChange={(e) => dispatch(setList(e.target.value))}
-            placeholder="enter......"
+            placeholder="Enter task......"
           />
         </Col>
         <Col xs={4} xl={2}>

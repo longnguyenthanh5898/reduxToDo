@@ -13,6 +13,13 @@ code {
 }
 .inputBtn {
   height: 40px !important;
+  font-weight: bold !important;
+  width: 100%;
+  background-color: #333!important;
+  color: #fff !important;
+}
+.inputBtn :hover{
+  opacity: 0.8;
 }
 .title{
   display: flex;
@@ -24,16 +31,38 @@ code {
 }
 .editBtn{
   background-color: green !important;
+  color: #fff!important;
+  margin-left: 1px;
+  
+}
+.editBtn:hover{
+  opacity: 0.8 !important;
 }
 .deleteBtn{
-  background-color: red !important;
+  margin-left: 1px;
 } 
  .lists-item{
- 
+  margin-right: 44px;
+  margin-top: 20px;
 } 
 .list-item{
   padding: 4px 4px;
   border-top: 1px solid #333;
-  
+}
+.lists-container{
 
+}
+.style{
+  background: #0092ff;
+  padding: 8px 0;
+}
+.list-text{
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #ddd;
+  padding-left: 8px;
+}
+.text-input{
+  font-weight: bold;
+  font-size: 20px;
 }

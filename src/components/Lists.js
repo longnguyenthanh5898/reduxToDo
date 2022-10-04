@@ -5,19 +5,21 @@ const Lists = ({ handleEdit, handleDelete, lists }) => {
     <ul>
       {lists.map((list, index) => (
         <Row key={index} justify="center" className="lists-item">
-          <Col xs={16} xl={16}>
+          <Col xs={14} md={16} xl={20} className="list-text">
             {list}
           </Col>
-          <Col xs={4} xl={4}>
+          <Col xs={5} md={4} xl={2}>
             <Button
+              type="warning"
               className="listBtn editBtn"
               onClick={() => handleEdit(index)}
             >
               EDIT
             </Button>
           </Col>
-          <Col xs={4} xl={4}>
+          <Col xs={5} md={4} xl={2}>
             <Button
+              type="danger"
               className="listBtn deleteBtn"
               onClick={() => handleDelete(index)}
             >
