@@ -24,6 +24,7 @@ code {
 .title{
   display: flex;
   justify-content: center !important;
+  font-weight: bold!important;
 } 
 .listBtn{
   width: 100%;
@@ -61,8 +62,10 @@ code {
   font-size: 20px;
   background-color: #ddd;
   padding-left: 8px;
+  overflow: hidden;
 }
 .text-input{
   font-weight: bold;
   font-size: 20px;
+  overflow: hidden;
 }

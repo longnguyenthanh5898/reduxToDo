@@ -23,9 +23,9 @@ function App() {
       inputRef.current.focus();
     }
   };
-  const editSubmit = () => {
+  const editSubmit = (id) => {
     if (isEdit) {
-      dispatch(editList({ id: lists.indexOf(), value: list }));
+      dispatch(editList({ id: findIndex(list, id), value: list }));
       //dispatch(addList(list));
       dispatch(setList(""));
       inputRef.current.focus();
@@ -41,7 +41,15 @@ function App() {
 
     setIsEdit(true);
   };
-
+  const findIndex = (taskList, id) => {
+    let index = -1;
+    taskList.forEach((t, i) => {
+      if (t.id === id) {
+        index = i;
+      }
+    });
+    return index;
+  };
   return (
     <div>
       <Title />

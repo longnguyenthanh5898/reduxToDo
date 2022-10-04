@@ -1,5 +1,5 @@
 import "antd/dist/antd.css";
-import { Button, Input, Row, Col } from "antd";
+import { Button, Row, Col } from "antd";
 const Lists = ({ handleEdit, handleDelete, lists }) => {
   return (
     <ul>
