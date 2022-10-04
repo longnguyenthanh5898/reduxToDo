@@ -2,8 +2,9 @@ import { useReducer, useRef, useState } from "react";
 import { setList, addList, editList, deleteList } from "./actions/action";
 import { reducer } from "./reducers/reducer";
 import Title from "./components/Title";
-import Input from "./components/Input";
+import InputForm from "./components/InputForm";
 import Lists from "./components/Lists";
+import "antd/dist/antd.less";
 const initState = {
   lists: [],
   list: "",
@@ -45,7 +46,7 @@ function App() {
     <div>
       <Title />
 
-      <Input
+      <InputForm
         handleAdd={handleAdd}
         editSubmit={editSubmit}
         setList={setList}
