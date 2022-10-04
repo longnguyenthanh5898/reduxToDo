@@ -1,5 +1,14 @@
 import { SET_LIST, ADD_LIST, EDIT_LIST, DELETE_LIST } from "../actions/action";
 export const reducer = (state, action) => {
+  // const findIndex = (taskList, id) => {
+  //   let index = -1;
+  //   taskList.forEach((t, i) => {
+  //     if (t.id === id) {
+  //       index = i;
+  //     }
+  //   });
+  //   return index;
+  // };
   let newState;
   switch (action.type) {
     case SET_LIST:
@@ -29,16 +38,25 @@ export const reducer = (state, action) => {
 
     ////////////////////////////////////
     case EDIT_LIST:
-    // let newList = [...state.lists];
-    // let prevInput = state.list;
-    // let currInput = list;
+      //let index = findIndex(state.lists, action.id);
+      const { id, value } = action.payload;
 
-    // // newList.replace(prevInput, currInput);
-    // newList.replace(prevInput, currInput);
-    // newState = {
-    //   ...state,
-    //   lists: [...newList],
-    // };
+      const newList = [...state.lists];
+      newList.splice(state.lists[id], 1, value);
+      console.log(
+        "action.data======",
+        value,
+        "action.id======",
+        id,
+        "state.lists[id]====",
+        state.lists[id]
+      );
+      newState = {
+        ...state,
+        lists: [...newList],
+      };
+      break;
+
     //////////////////////////////////////
 
     default:

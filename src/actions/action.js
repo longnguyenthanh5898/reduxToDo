@@ -18,7 +18,7 @@ export const addList = (payload) => {
 export const editList = (payload) => {
   return {
     type: EDIT_LIST,
-    payload: payload,
+    payload,
   };
 };
 export const deleteList = (payload) => {

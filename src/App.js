@@ -1,6 +1,9 @@
 import { useReducer, useRef, useState } from "react";
 import { setList, addList, editList, deleteList } from "./actions/action";
 import { reducer } from "./reducers/reducer";
+import Title from "./components/Title";
+import Input from "./components/Input";
+import Lists from "./components/Lists";
 const initState = {
   lists: [],
   list: "",
@@ -17,9 +20,12 @@ function App() {
       dispatch(addList(list));
       dispatch(setList(""));
       inputRef.current.focus();
-    } else {
-      //dispatch((list, index));
-      dispatch(addList(list));
+    }
+  };
+  const editSubmit = () => {
+    if (isEdit) {
+      dispatch(editList({ id: lists.indexOf(), value: list }));
+      //dispatch(addList(list));
       dispatch(setList(""));
       inputRef.current.focus();
       setIsEdit(false);
@@ -34,28 +40,25 @@ function App() {
 
     setIsEdit(true);
   };
-  console.log(lists);
+
   return (
     <div>
-      <h1>To do list</h1>
-      <input
-        value={list}
-        ref={inputRef}
-        onChange={(e) => dispatch(setList(e.target.value))}
-        placeholder="enter......"
-      />
-      {!isEdit && <button onClick={() => handleAdd()}>Add Task</button>}
-      {isEdit && <button onClick={() => handleAdd()}>Edit Task</button>}
+      <Title />
 
-      <ul>
-        {lists.map((list, index) => (
-          <li key={index}>
-            {list}
-            <button onClick={() => handleEdit(index)}>EDIT</button>
-            <button onClick={() => handleDelete(index)}>DELETE</button>
-          </li>
-        ))}
-      </ul>
+      <Input
+        handleAdd={handleAdd}
+        editSubmit={editSubmit}
+        setList={setList}
+        list={list}
+        isEdit={isEdit}
+        dispatch={dispatch}
+      />
+
+      <Lists
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        lists={lists}
+      />
     </div>
   );
 }
