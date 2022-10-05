@@ -27,30 +27,17 @@ export const reducer = (state, action) => {
 
       break;
 
-    ////////////////////////////////////
     case EDIT_LIST:
       const { id, value } = action.payload;
 
       const newList = [...state.lists];
-      newList.splice(newList[id - 1], 1, value);
-      console.log(
-        // "||newList",
-        // newList,
-        "||id",
-        id,
-        // "||value",
-        // value,
-        "||newList[id - 1]",
-        newList[id - 1]
-      );
+      newList.splice(id, 1, value);
       newState = {
         ...state,
         lists: [...newList],
       };
 
       break;
-
-    //////////////////////////////////////
 
     default:
       return new Error();
