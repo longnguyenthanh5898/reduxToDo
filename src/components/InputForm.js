@@ -9,6 +9,7 @@ const InputForm = ({
   isEdit,
   dispatch,
 }) => {
+  console.log(isEdit);
   return (
     <>
       <Row justify="center">

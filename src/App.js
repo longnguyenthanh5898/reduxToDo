@@ -26,11 +26,10 @@ function App() {
   };
   const editSubmit = (id, value) => {
     if (isEdit) {
+      setIsEdit(false);
       dispatch(editList({ id: idEdit, value: list }));
-
       dispatch(setList(""));
       inputRef.current.focus();
-      setIsEdit(false);
     }
   };
   const handleDelete = (index) => {
