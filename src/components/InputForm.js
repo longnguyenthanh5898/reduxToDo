@@ -22,18 +22,22 @@ const InputForm = ({
             placeholder="Enter task......"
           />
         </Col>
-        <Col xs={4} xl={2}>
-          {!isEdit && (
+
+        {!isEdit && (
+          <Col xs={4} xl={2}>
             <Button className="inputBtn" onClick={() => handleAdd()}>
               Add Task
             </Button>
-          )}
-          {isEdit && (
+          </Col>
+        )}
+
+        {isEdit && (
+          <Col xs={4} xl={2}>
             <Button className="inputBtn" onClick={() => editSubmit()}>
               Edit Task
             </Button>
-          )}
-        </Col>
+          </Col>
+        )}
       </Row>
     </>
   );

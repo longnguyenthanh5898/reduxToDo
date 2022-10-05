@@ -23,9 +23,9 @@ function App() {
       inputRef.current.focus();
     }
   };
-  const editSubmit = (id) => {
+  const editSubmit = () => {
     if (isEdit) {
-      dispatch(editList({ id: findIndex(list, id), value: list }));
+      //dispatch(editList({ id: findIndex(lists, id), value: list }));
       //dispatch(addList(list));
       dispatch(setList(""));
       inputRef.current.focus();
