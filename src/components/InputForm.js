@@ -1,5 +1,7 @@
 import "antd/dist/antd.css";
-import { Button, Input, Row, Col } from "antd";
+import { Button, Input, Row, Col, Space } from "antd";
+import { EditFilled, PlusSquareFilled } from "@ant-design/icons";
+
 const InputForm = ({
   setList,
   handleAdd,
@@ -27,7 +29,9 @@ const InputForm = ({
         {!isEdit && (
           <Col xs={4} xl={2}>
             <Button className="inputBtn" onClick={() => handleAdd()}>
-              Add Task
+              <Space>
+                <PlusSquareFilled />
+              </Space>
             </Button>
           </Col>
         )}
@@ -35,7 +39,9 @@ const InputForm = ({
         {isEdit && (
           <Col xs={4} xl={2}>
             <Button className="inputBtn" onClick={() => editSubmit()}>
-              Edit Task
+              <Space>
+                <EditFilled />
+              </Space>
             </Button>
           </Col>
         )}

@@ -1,5 +1,6 @@
 import "antd/dist/antd.css";
-import { Button, Row, Col } from "antd";
+import { Button, Row, Col, Space } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 const Lists = ({ handleEdit, handleDelete, lists }) => {
   return (
     <ul>
@@ -14,7 +15,9 @@ const Lists = ({ handleEdit, handleDelete, lists }) => {
               className="listBtn editBtn"
               onClick={() => handleEdit(index)}
             >
-              EDIT
+              <Space>
+                <EditOutlined />
+              </Space>
             </Button>
           </Col>
           <Col xs={5} md={4} xl={2}>
@@ -23,7 +26,9 @@ const Lists = ({ handleEdit, handleDelete, lists }) => {
               className="listBtn deleteBtn"
               onClick={() => handleDelete(index)}
             >
-              DELETE
+              <Space>
+                <DeleteOutlined />
+              </Space>
             </Button>
           </Col>
         </Row>
