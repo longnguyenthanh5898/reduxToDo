@@ -4,7 +4,7 @@ import { reducer } from "./reducers/reducer";
 import Title from "./components/Title";
 import InputForm from "./components/InputForm";
 import Lists from "./components/Lists";
-import "antd/dist/antd.less";
+
 const initState = {
   lists: [],
   list: "",
@@ -15,6 +15,7 @@ function App() {
   const { list, lists } = state;
   const inputRef = useRef();
   const [isEdit, setIsEdit] = useState(false);
+  const [idEdit, setIdEdit] = useState();
 
   const handleAdd = () => {
     if (!isEdit) {
@@ -23,10 +24,10 @@ function App() {
       inputRef.current.focus();
     }
   };
-  const editSubmit = () => {
+  const editSubmit = (id, value) => {
     if (isEdit) {
-      //dispatch(editList({ id: findIndex(lists, id), value: list }));
-      //dispatch(addList(list));
+      dispatch(editList({ id: idEdit, value: list }));
+
       dispatch(setList(""));
       inputRef.current.focus();
       setIsEdit(false);
@@ -40,16 +41,9 @@ function App() {
     dispatch(setList(lists[index]));
 
     setIsEdit(true);
+    setIdEdit(index);
   };
-  const findIndex = (taskList, id) => {
-    let index = -1;
-    taskList.forEach((t, i) => {
-      if (t.id === id) {
-        index = i;
-      }
-    });
-    return index;
-  };
+
   return (
     <div>
       <Title />
